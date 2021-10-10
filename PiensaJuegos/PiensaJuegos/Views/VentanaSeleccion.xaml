@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PiensaJuegos.Views.VentanaSeleccion">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="PiensaJuegos"
+                   FontSize="Title"
+                   HorizontalOptions="Center"/>
+
+            <Label Text="Selecciona un juego"
+                   HorizontalOptions="Center"/>
+
+            <Button x:Name="btnIrPasaVocablo"
+                    Text="PasaVocablo"
+                    BackgroundColor="green"
+                    TextColor="Black"
+
+                />
+
+
+            <Button x:Name="btnIrAdivinanzaQr"
+                    Text="AdivinanzasQr"
+                    BackgroundColor="green"
+                    TextColor="Black"
+
+                />
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

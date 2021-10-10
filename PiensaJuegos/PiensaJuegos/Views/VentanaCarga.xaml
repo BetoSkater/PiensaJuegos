@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PiensaJuegos.Views.VentanaCarga">
+    <ContentPage.Content>
+
+        <AbsoluteLayout>
+
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All">
+
+                <Label
+                    
+                   Text="PiensaJuegos"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   />
+            </StackLayout>
+
+
+
+
+
+        </AbsoluteLayout>
+
+
+
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PiensaJuegos.Views.MenuJuego">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+
+            <Image Source="fondobosque.jpeg"
+                   Aspect="Fill"
+
+                   AbsoluteLayout.LayoutBounds="0,0,1,1"
+                   AbsoluteLayout.LayoutFlags="All"
+                   />
+
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0,0.,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                Padding="15"
+                BackgroundColor="transparent">
+
+                <Image Source="interrogacion.png"
+                       HeightRequest="100"
+                       WidthRequest="100"/>
+
+
+
+                <StackLayout Padding="15"
+                                 HorizontalOptions="Center">
+                    <Label Text="Nueva Partida"
+                                 HorizontalOptions="Center"
+                                 FontAttributes="Bold"
+                                 TextDecorations="Underline"
+                                 TextColor="White"/>
+
+                    <Label Text="Seleccina un nivel de dificultad:"
+                                TextColor="White"/>
+
+                    <Slider
+                            Maximum="2"
+                            Minimum="0"
+                            x:Name="selectorDificultad"
+                          
+                            >
+
+                    </Slider>
+
+                    <Label BindingContext="{x:Reference Name=selectorDificultad}"
+                               Text="{Binding Path = Value,Mode=TwoWay}"
+                               x:Name="lblDificultad"
+                               TextColor="White"
+                               HorizontalOptions="Center"
+                               PropertyChanged="lblDificultad_PropertyChanged"
+                               />
+
+                    <Button x:Name="btnIniciarPasoVocablo"
+                                Text="¡Comenzar!"
+                                TextColor="White"/>
+                </StackLayout>
+
+
+
+
+                <BoxView HeightRequest="1" BackgroundColor="White"/>
+
+                <Button x:Name="btnPuntuacionesPasaVocablo"
+                        Text="Ranking General"
+                     
+                       
+                        TextColor="White"
+                        BackgroundColor="Transparent"/>
+            </StackLayout>
+
+
+        </AbsoluteLayout>
+
+
+
+
+
+
+
+    </ContentPage.Content>
+</ContentPage>

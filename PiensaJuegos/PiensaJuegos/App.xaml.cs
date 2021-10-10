@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PiensaJuegos.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace PiensaJuegos
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new VentanaCarga());
         }
 
         protected override void OnStart()

@@ -1,0 +1,383 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PiensaJuegos.Views.JuegoPasoVocablo">
+    <AbsoluteLayout >
+        <Image
+            Source="fondobosque.jpeg"
+                   Aspect="Fill"
+
+                   AbsoluteLayout.LayoutBounds="0,0,1,1"
+                   AbsoluteLayout.LayoutFlags="All"/>
+        <BoxView
+            AbsoluteLayout.LayoutBounds="0,0,1,0.5"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="Gray"
+            Opacity="0.2"
+            
+            />
+        <Grid 
+            AbsoluteLayout.LayoutBounds="0,0,1,0.4"
+            AbsoluteLayout.LayoutFlags="All"
+            Padding="5,0,5,0"
+            >
+
+            <!--Fila 1 -->
+
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7"
+                   Text="PASAVOCABLO"
+                   FontAttributes="Bold"
+                   TextDecorations="Underline"
+                   TextColor="White"
+                   FontSize="Title"
+                   HorizontalOptions="Center"
+                   VerticalTextAlignment="Center"/>
+
+            <!--Fila 2 -->
+
+            <!-- En teoría, Frame tiene la propiedad CornerRadius, dentro podria meter la label para hacer el apaño pese a ser una chapuza-->
+
+            <Label x:Name="imgA"
+                   Text="A"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   />
+
+            <Label x:Name="imgB"
+                   Text="B"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="1"
+                   Grid.Column="1"
+                   />
+
+            <Label x:Name="imgC"
+                   Text="C"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="1"
+                   Grid.Column="2"
+                   />
+
+            <Label x:Name="imgD"
+                   Text="D"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="1"
+                   Grid.Column="3"
+                   />
+
+            <Label x:Name="imgE"
+                   Text="E"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="1"
+                   Grid.Column="4"
+                   />
+
+            <Label x:Name="imgF"
+                   Text="F"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="1"
+                   Grid.Column="5"
+                   />
+
+            <Label x:Name="imgG"
+                   Text="G"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="1"
+                   Grid.Column="6"
+                   />
+
+            <!--Fila 3 -->
+
+            <Label x:Name="imgH"
+                   Text="H"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="2"
+                   Grid.Column="0"
+                   />
+
+            <Label x:Name="imgI"
+                   Text="I"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="2"
+                   Grid.Column="1"
+                   />
+
+            <Label x:Name="imgJ"
+                   Text="J"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="2"
+                   Grid.Column="2"
+                   />
+
+            <Label x:Name="imgK"
+                   Text="K"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="2"
+                   Grid.Column="3"
+                   />
+
+            <Label x:Name="imgL"
+                   Text="L"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="2"
+                   Grid.Column="4"
+                   />
+
+            <Label x:Name="imgM"
+                   Text="M"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="2"
+                   Grid.Column="5"
+                   />
+
+            <Label x:Name="imgN"
+                   Text="N"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="2"
+                   Grid.Column="6"
+                   />
+            <!-- Fila 4 -->
+
+            <Label x:Name="imgNie"
+                   Text="Ñ"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="3"
+                   Grid.Column="0"
+                   />
+
+            <Label x:Name="imgO"
+                   Text="O"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="3"
+                   Grid.Column="1"
+                   />
+
+            <Label x:Name="imgP"
+                   Text="P"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="3"
+                   Grid.Column="2"
+                   />
+
+            <Label x:Name="imgQ"
+                   Text="Q"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="3"
+                   Grid.Column="3"
+                   />
+
+            <Label x:Name="imgR"
+                   Text="R"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="3"
+                   Grid.Column="4"
+                   />
+
+            <Label x:Name="imgS"
+                   Text="S"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="3"
+                   Grid.Column="5"
+                   />
+
+            <Label x:Name="imgT"
+                   Text="T"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="3"
+                   Grid.Column="6"
+                   />
+
+            <!-- Fila 5 -->
+
+            <Grid Grid.Row="4"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="7"
+                  HorizontalOptions="Center"
+                  Padding="15,0,15,0">
+
+                <Label x:Name="imgU"
+                   Text="U"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                       WidthRequest="55"
+                       HorizontalTextAlignment="Center"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   />
+
+                <Label x:Name="imgV"
+                   Text="V"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                       HorizontalTextAlignment="Center"
+                   Grid.Row="0"
+                   Grid.Column="1"
+                   />
+
+                <Label x:Name="imgW"
+                   Text="W"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                       HorizontalTextAlignment="Center"
+                   Grid.Row="0"
+                   Grid.Column="2"
+                   />
+
+                <Label x:Name="imgX"
+                   Text="X"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                       HorizontalTextAlignment="Center"
+                   Grid.Row="0"
+                   Grid.Column="3"
+                   />
+
+                <Label x:Name="imgY"
+                   Text="Y"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                       HorizontalTextAlignment="Center"
+                   Grid.Row="0"
+                   Grid.Column="4"
+                   />
+
+                <Label x:Name="imgZ"
+                   Text="Z"
+                   FontSize="Large"
+                   BackgroundColor="DodgerBlue"
+                       HorizontalTextAlignment="Center"
+                   Grid.Row="0"
+                   Grid.Column="5"
+                   />
+            </Grid>
+
+            <StackLayout Grid.Row="5"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="7"
+                         HorizontalOptions="Center" x:Name="contenedorTemp">
+
+                <Label Text="Tiempo"
+                       TextColor="White"/>
+                <Label
+                   x:Name="lblTemporizador"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                   HorizontalOptions="Center" Text="{Binding segundosRestantes,Mode=TwoWay}"/>
+
+            </StackLayout>
+
+
+
+
+        </Grid>
+
+        <StackLayout
+            AbsoluteLayout.LayoutBounds="0,1,1,0.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Fill"
+            x:Name="contenedorPreg"
+          
+            >
+
+
+    <!--ESta es la etiqueta donde se debe hacer el binding de las preguntas -->
+            <Label Text="{Binding segundosRestantes,Mode=TwoWay}"
+                  TextColor="White"
+                   HorizontalTextAlignment="Center"
+                   x:Name="lblPregunta"/>
+            <Label Text="Introduce la palabra correcta:"
+                   HorizontalTextAlignment="Center"
+                   TextColor="White"/>
+            <StackLayout Orientation="Horizontal"
+                         
+                         HorizontalOptions="Center"
+                         Padding="5,0,5,0"
+                         >
+
+                <Entry 
+                    x:Name="txtRespuesta"
+                    Placeholder="Tu respuesta"
+                    PlaceholderColor="White"
+                    WidthRequest="250"
+                    
+                    />
+                <Button
+                    Text="->"
+                    x:Name="btnConfirmar"
+                    BackgroundColor="AntiqueWhite"
+                   
+                    WidthRequest="50"
+                    HeightRequest="50"
+                    />
+
+            </StackLayout>
+
+            <Label x:Name="lblPruebaDificultad"/>
+
+            <Label x:Name="lblInformativa"
+                       Text="Prueba: Correcto!"
+                       TextColor="White"
+                       HorizontalTextAlignment="Center"/>
+            <Button 
+                x:Name="btnPasar"
+                Text="PASOVOCABLO"
+                TextColor="NavajoWhite"
+                FontAttributes="Bold, Italic"
+                BackgroundColor="Transparent"
+
+                    />
+
+            <Button Text="Rendirse"
+                    x:Name="btnRendirse"
+                    TextColor="Red"
+                    FontAttributes="Bold, Italic"
+                    BackgroundColor="Transparent"/>
+        </StackLayout>
+
+
+
+    </AbsoluteLayout>
+</ContentPage>
