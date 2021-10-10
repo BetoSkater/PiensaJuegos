@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:union="clr-namespace:PiensaJuegos.ViewModels"
+             x:Class="PiensaJuegos.Views.PuntuacionPasaVocablo">
+    <ContentPage.BindingContext>
+        <union:PtsVocabloViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+
+        <AbsoluteLayout>
+
+            <Image Source="fondoescaleras.jpeg"
+                   Aspect="AspectFill"
+                   AbsoluteLayout.LayoutBounds="0,0,1,1"
+                   AbsoluteLayout.LayoutFlags="All"/>
+
+            <Label 
+                   Text="TOP 10"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   TextDecorations="Underline"
+                   
+                   HorizontalOptions="Center"
+                   AbsoluteLayout.LayoutBounds="0,0.01,1,0.05"
+                   AbsoluteLayout.LayoutFlags="All"
+                   />
+
+            <BoxView BackgroundColor="LightSalmon"
+                    AbsoluteLayout.LayoutBounds="0.5,0.7,0.9,0.9"
+                    AbsoluteLayout.LayoutFlags="All"
+                    Opacity="0.15"/>
+
+            <ListView
+                ItemsSource="{Binding puntuaciones}"
+                
+                x:Name="lstTopPuntusciones"
+                BackgroundColor="Transparent"
+                AbsoluteLayout.LayoutBounds="0.5,0.7,0.9,0.9"
+                    AbsoluteLayout.LayoutFlags="All"
+               
+                RowHeight="70">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame BackgroundColor="Transparent"
+                                   BorderColor="LightSalmon"
+                                   Margin="3"
+                                   Padding="10,5,10,5">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label TextColor="White"
+                                       FontAttributes="Bold"
+                                       Text="{Binding posicion, StringFormat='{0}\)'}"
+                                       FontSize="Title"
+                                       VerticalOptions="Center"
+                                       x:Name="lblPosicion"/>
+                                    <StackLayout Orientation="Vertical"
+                                             VerticalOptions="Center"
+                                             HorizontalOptions="Center">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding puntuacion}"
+                                               x:Name="lblPuntos"
+                                               TextColor="White"/>
+                                            <Label Text="{Binding usuario}"
+                                               TextColor="White"
+                                               x:Name="lblNombre"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding dificultad}" TextColor="White" x:Name="lblDificultad"/>
+                                            <Label Text="{Binding acertadas}" TextColor="Lime" x:Name="lblAciertos"/>
+                                            <Label Text="{Binding tiempo}" TextColor="white"  x:Name="lblTiempo" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </AbsoluteLayout>
+
+
+    </ContentPage.Content>
+</ContentPage>

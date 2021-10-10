@@ -8,7 +8,7 @@ using System.Text;
 
 namespace PiensaJuegos.ViewModels
 {
-    class PtsVocabloViewModel : ViewModelBase
+    public class PtsVocabloViewModel : ViewModelBase
     {
 
         RepositorPuntosPasaVocablo repoPuntos;

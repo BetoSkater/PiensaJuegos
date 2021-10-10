@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PiensaJuegos.Models
 {
-    class PuntosPasaVocablo : RealmObject
+    public class PuntosPasaVocablo : RealmObject
     {
         public int posicion { get; set; }
         public int puntuacion { get; set; }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace PiensaJuegos.ViewModels
 {
-    class PreguntaModel : ViewModelBase
+    public class PreguntaModel : ViewModelBase
     {
 
         public PreguntaModel()

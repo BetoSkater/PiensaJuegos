@@ -7,7 +7,7 @@ using System.Text;
 
 namespace PiensaJuegos.ViewModels
 {
-    class LetraVModel : ViewModelBase
+    public class LetraVModel : ViewModelBase
     {
 
         RepositoryV repoV;

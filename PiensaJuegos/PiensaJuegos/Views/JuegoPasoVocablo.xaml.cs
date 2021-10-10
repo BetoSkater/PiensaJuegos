@@ -1,4 +1,5 @@
 ﻿using PiensaJuegos.Models;
+using PiensaJuegos.Repositories;
 using PiensaJuegos.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -132,9 +133,14 @@ namespace PiensaJuegos.Views
             imgZ.BindingContext = zVm;
 
             //Intento el Binding aqui Temporizador:
-            this.BindingContext = temporizadorVM;
+            // this.BindingContext = temporizadorVM;
+            //this.lblTemporizador.Text = temporizadorVM.segundosRestantes.ToString();
+            this.contenedorTemp.BindingContext = temporizadorVM;
             this.lblTemporizador.Text = temporizadorVM.segundosRestantes.ToString();
+            //TODO he añadido el contenedorTemp
+            this.contenedorPreg.BindingContext = temporizadorVM; //El binding se hace aui al stack que contiene la Label.
 
+            this.lblPregunta.Text = temporizadorVM.segundosRestantes.ToString();
             //Aqui tengo que llamar al metodo que extrae los valores de la base de datos: Mejor antes del tiempo para que el jugador no pierda segundos.
             CargarPartida();
             GenerarListaPreguntas();
@@ -143,12 +149,10 @@ namespace PiensaJuegos.Views
 
             //  FuncionamientoJuego();
 
-
-
+            this.btnRendirse.Clicked += FinPartida;
 
 
         }//Fin constructor
-
 
 
         //Método para obtener el tiempo en función de la dificultad seleccionada por el usiario:
@@ -204,9 +208,9 @@ namespace PiensaJuegos.Views
             temporizadorVM.segundosRestantes = temporizadorVM.segundosRestantes - 1;
 
             //TODO el temporizador funciona, pero no imprime los valores. Lo hace de forma aleatoria y muchas vees imprime un valor, y no vuelve a cambiarse nunca.
-            this.contenedorTemp.BindingContext = temporizadorVM; //El binding se hace aui al stack que contiene la Label.
+            // this.contenedorTemp.BindingContext = temporizadorVM; //El binding se hace aui al stack que contiene la Label.
 
-            this.lblTemporizador.Text = temporizadorVM.segundosRestantes.ToString();
+            //this.lblTemporizador.Text = temporizadorVM.segundosRestantes.ToString();
 
             if (temporizadorVM.segundosRestantes == 0)
             {
@@ -396,8 +400,9 @@ namespace PiensaJuegos.Views
 
         public async Task FuncionamientoJuego()
         {
-
-
+            //Igual le puedo poner como parámetro de entrada el boolean de findepartida
+            // https://docs.microsoft.com/es-es/xamarin/xamarin-forms/app-fundamentals/triggers
+            //Creo que la parte mplementar la clase genérica TriggerAction<T>, con el parámetro genérico correspondiente al puede ser muy interesante
             do
             {
                 if (listaPreguntas[contadorCiclo].sinRespuesta)
@@ -507,7 +512,16 @@ namespace PiensaJuegos.Views
 
             return contadorFinal;
         }
+        //Método que finaliza la partida y navega a la ventana de puntuaciones:
 
+        public async void FinPartida(Object Sender, EventArgs e)
+        {
+
+
+            await Navigation.PushAsync(new PuntuacionPasaVocablo());
+
+
+        }//Fin método FinPartida
 
 
         //----- Metodos para el cambio de los fondos -------/ 

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PiensaJuegos.ViewModels
 {
-    class TemporizadorModel : ViewModelBase
+    public class TemporizadorModel : ViewModelBase
     {
         public TemporizadorModel()
         {

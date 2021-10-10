@@ -1,4 +1,5 @@
 ﻿using PiensaJuegos.Models;
+using PiensaJuegos.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,9 @@ namespace PiensaJuegos.Views
         RepositoryX repoX;
         RepositoryY repoY;
         RepositoryZ repoZ;
+
+        RepositorPuntosPasaVocablo repoPuntos; //TODO quitar
+
         public VentanaCarga()
         {
             InitializeComponent();
@@ -77,7 +81,7 @@ namespace PiensaJuegos.Views
             this.repoY = new RepositoryY();
             this.repoZ = new RepositoryZ();
 
-
+            this.repoPuntos = new RepositorPuntosPasaVocablo(); //TODO quitar
 
             //Llamada a los métodos para la inserción de valores en las diversas tablas de la base de datos. 
             InicioInsertarTodasLasPreguntas();
@@ -141,7 +145,7 @@ namespace PiensaJuegos.Views
             List<LetraX> pruebaX = repoX.GetPreguntasX();
             List<LetraY> pruebaY = repoY.GetPreguntasY();
             List<LetraZ> pruebaZ = repoZ.GetPreguntasZ();
-
+            List<PuntosPasaVocablo> pruebaPuntos = repoPuntos.GetPuntuaciones(); //TODO sale nulo, RIP
             //Primero Se comprueba si existen valores en la base de datos. Sólo se comprueba con la tabla A.
 
             if (repoA.GetPreguntasA().Count == 0)
@@ -176,6 +180,7 @@ namespace PiensaJuegos.Views
                 InicioInsertarPreguntasY();
                 InicioInsertarPreguntasZ();
 
+                InsertarPuntuacionesPrueba(); //TODO ELIMINAR
 
             }
 
@@ -1184,6 +1189,32 @@ namespace PiensaJuegos.Views
             repoZ.InsertarPreguntaZ(letraZ5);
 
         }//Fin método insertar preguntas letra Z
+
+
+        //TODO o
+        //TODO INSERCCION DE LAS PUNTUACIONES DE PRUEBA, esto se tiene que hacer en la ventana de puntuaciones, que salga una alerta para meter un valor si la puntuacion obtenida es top 10
+
+        //TODO o
+
+        public void InsertarPuntuacionesPrueba()
+        {
+
+
+
+            List<PuntosPasaVocablo> listaPuntuaciones = new List<PuntosPasaVocablo>();
+
+
+            repoPuntos.InsertarPuntuacion(new PuntosPasaVocablo(1, 9876, "Ana", "Experto", 27, 269));
+            repoPuntos.InsertarPuntuacion(new PuntosPasaVocablo(2, 8765, "Juan", "Experto", 27, 269));
+            repoPuntos.InsertarPuntuacion(new PuntosPasaVocablo(3, 7986, "Paco", "Experto", 27, 269));
+            repoPuntos.InsertarPuntuacion(new PuntosPasaVocablo(4, 6776, "Elena", "Experto", 27, 269));
+            repoPuntos.InsertarPuntuacion(new PuntosPasaVocablo(5, 5976, "Pedro", "Experto", 27, 269));
+            repoPuntos.InsertarPuntuacion(new PuntosPasaVocablo(6, 4776, "Petronila", "Experto", 27, 269));
+            repoPuntos.InsertarPuntuacion(new PuntosPasaVocablo(7, 4676, "Carlos", "Experto", 27, 269));
+            repoPuntos.InsertarPuntuacion(new PuntosPasaVocablo(8, 3576, "Judith", "Experto", 27, 269));
+            repoPuntos.InsertarPuntuacion(new PuntosPasaVocablo(9, 2976, "Sara", "Experto", 27, 269));
+            repoPuntos.InsertarPuntuacion(new PuntosPasaVocablo(10, 1276, "Cristian", "Experto", 27, 269));
+        }
 
     }
 }

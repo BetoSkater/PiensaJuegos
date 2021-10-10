@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PiensaJuegos.Models
 {
-    class LetraU: RealmObject
+    public class LetraU: RealmObject
     {
         //IdPregunta
         public int idLetraU { get; set; }

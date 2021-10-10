@@ -7,7 +7,7 @@ using System.Text;
 
 namespace PiensaJuegos.Repositories
 {
-    class RepositorPuntosPasaVocablo
+     class RepositorPuntosPasaVocablo
     {
 
         private Realm conexionRealm;
