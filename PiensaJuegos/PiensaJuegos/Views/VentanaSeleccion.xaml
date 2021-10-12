@@ -25,6 +25,13 @@
                     TextColor="Black"
 
                 />
+
+
+            <Button x:Name="btnAcierto"
+                    Text="Acierto"/>
+
+            <Button x:Name="btnFallo"
+                    Text="Fallo"/>
         </StackLayout>
 
     </ContentPage.Content>

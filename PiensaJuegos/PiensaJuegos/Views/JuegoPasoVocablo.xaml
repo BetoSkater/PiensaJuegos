@@ -324,7 +324,11 @@
 
 
     <!--ESta es la etiqueta donde se debe hacer el binding de las preguntas -->
-            <Label Text="{Binding segundosRestantes,Mode=TwoWay}"
+          
+            
+            <!--="{Binding letraPregunta.pregunta ,Mode=TwoWay}"-->
+            <Label 
+                    Text="{Binding letraPregunta.pregunta , Mode=TwoWay}"
                   TextColor="White"
                    HorizontalTextAlignment="Center"
                    x:Name="lblPregunta"/>

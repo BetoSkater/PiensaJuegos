@@ -11,22 +11,22 @@ namespace PiensaJuegos.ViewModels
 
         public PreguntaModel()
         {
-            this.Letra = new Letra();
+            this.letraPregunta = new Letra();
         }
 
 
 
 
         //Propiedad para realizar los bindings sobre las vistas:
-        private Letra _Letra;
+        private Letra _letraPregunta;
 
-        public Letra Letra
+        public Letra letraPregunta
         {
-            get { return this._Letra; }
+            get { return this._letraPregunta; }
             set
             {
-                this._Letra = value;
-                OnPropertyChanged("Letra");
+                this._letraPregunta = value;
+                OnPropertyChanged("letraPregunta");
             }
         }
 

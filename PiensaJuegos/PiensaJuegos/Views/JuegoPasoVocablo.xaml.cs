@@ -15,6 +15,8 @@ namespace PiensaJuegos.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class JuegoPasoVocablo : ContentPage
     {
+        String dificultadPartida = "";
+
         //Ejemplo de uso de System.Timer: https://stackoverflow.com/questions/17300744/how-to-implement-countdowntimer-class-in-xamarin-c-sharp-android/17301154
         //Variables cuenta atrás:
         private System.Timers.Timer _timer;
@@ -54,6 +56,9 @@ namespace PiensaJuegos.Views
         public TemporizadorModel temporizadorVM = new TemporizadorModel();
 
         //Creación del objetoViewModel de la pregunta:
+
+        public PreguntaModel preguntaVM = new PreguntaModel();
+
 
         //TODO pendiente
 
@@ -95,6 +100,7 @@ namespace PiensaJuegos.Views
         //Variables necesarias para el uso de los métodos que integran la lógica del juego:
         bool veintisieteRespuestas = false; //Una vez se tienen 27 respuestas, pasa a ser true, finalizando la partida. //TODO Igual es inecesario ya que al final no se si haré uso de un do...while
         int contadorCiclo = 0; //Contador que sirve para conocer la posición en el "rosco".
+        int contadorFinal = 0; //El del método
         int aciertos = 0;            //Número de preguntas acertadas.
         int fallos = 0;              //Número de preguntas falladas.
         int preguntasRestantes = 27; //Número de preguntas pendientes de responder.
@@ -102,6 +108,10 @@ namespace PiensaJuegos.Views
         public JuegoPasoVocablo(String dificultad) //Esto es la clase, no es un método sin más. 
         {
             InitializeComponent();
+
+            //Asignación de la dificultad de la partida:
+
+            dificultadPartida = dificultad;
 
             //Bindings de las etiquetas:
             imgA.BindingContext = aVm;
@@ -137,13 +147,18 @@ namespace PiensaJuegos.Views
             //this.lblTemporizador.Text = temporizadorVM.segundosRestantes.ToString();
             this.contenedorTemp.BindingContext = temporizadorVM;
             this.lblTemporizador.Text = temporizadorVM.segundosRestantes.ToString();
-            //TODO he añadido el contenedorTemp
-            this.contenedorPreg.BindingContext = temporizadorVM; //El binding se hace aui al stack que contiene la Label.
-
-            this.lblPregunta.Text = temporizadorVM.segundosRestantes.ToString();
+           
+         
+            
             //Aqui tengo que llamar al metodo que extrae los valores de la base de datos: Mejor antes del tiempo para que el jugador no pierda segundos.
             CargarPartida();
             GenerarListaPreguntas();
+
+
+            //TODO he añadido el contenedorTemp. Se tiene que hacer despues de cargar la partida para evitar el NullObjectReference o similares:
+            this.contenedorPreg.BindingContext = preguntaVM; //El binding se hace aui al stack que contiene la Label.
+            preguntaVM.letraPregunta = listaPreguntas[contadorCiclo] ;
+           // this.lblPregunta.Text = preguntaVM.letraPregunta.pregunta.ToString();
 
             ContadorTiempoAsync(dificultad);
 
@@ -151,7 +166,13 @@ namespace PiensaJuegos.Views
 
             this.btnRendirse.Clicked += FinPartida;
 
+           // this.btnConfirmar.Clicked += pruebaBotonUno;
+            this.btnPasar.Clicked += pruebaBotonUno;
 
+
+            //TODO eliminar, esto tiene que ir en el metodo que inicie el juego
+
+            EncenderFondoFoco(contadorCiclo);
         }//Fin constructor
 
 
@@ -424,6 +445,50 @@ namespace PiensaJuegos.Views
             } while (!veintisieteRespuestas);
         } //Fin tarea asíncrona FuncionamientoJuego
 
+
+        //Métodos para activar tanto el sonido de fallo como el de acierto:
+
+        public void SuenaAcierto() {
+            var melodiaAcierto = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+            melodiaAcierto.Load("sonidoacierto.mp3");
+        }//Fin método SuenaAcierto
+
+        public void SuenaFallo() {
+            var melodiaFallo = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+            melodiaFallo.Load("sonidofallo.mp3");
+        }//Fin método SuenaFallo
+
+
+
+        //Método para calcular la puntuación:
+
+        public int ObtenerPuntuacion(int tiempo, int aciertos, int fallos, String dificultad) {
+
+            int valorDificultad = 0;
+
+            switch (dificultad) {
+                case "Principiante":
+                    valorDificultad = 1;
+                    break;
+                case "General":
+                    valorDificultad = 3;
+                    break;
+                case "Experto":
+                    valorDificultad = 5;
+                    break;
+                default:
+                    valorDificultad = 1;
+                    break;
+            }
+
+            int resultado = Convert.ToInt32((Math.Pow((valorDificultad * aciertos),5))-Math.Pow((fallos * 3),1/3)) + tiempo ; //El 1/3 es para hacer que sea la raiz cúbica
+            //TODO pendiente hacer lo del tiempo
+            return resultado; 
+
+
+        }
+
+
         //Método que se ejecuta cuando se pulsa el botón de enviar respuesta:
 
         public async Task EnviarRespuesta(int i)
@@ -494,7 +559,7 @@ namespace PiensaJuegos.Views
         public int SiguienteContador(int contadorActual)
         {
 
-            int contadorFinal = 0;
+           
 
             do
             {
@@ -516,12 +581,75 @@ namespace PiensaJuegos.Views
 
         public async void FinPartida(Object Sender, EventArgs e)
         {
+            //En primer lugar se calcula la puntuación del usuario:
+            int puntuacion = ObtenerPuntuacion(20,aciertos,fallos,dificultadPartida);
+
+            int nuevaPosicion = -1;
 
 
+            RepositorPuntosPasaVocablo repoPuntos = new RepositorPuntosPasaVocablo();
+
+            List<PuntosPasaVocablo> listaPuntuaciones = repoPuntos.GetPuntuaciones();
+
+            //Se comprueba si la puntuación del usuario está ene l top 10.
+
+            //Se crea el delegado para el método de comprobación:
+
+            //Action<PuntosPasaVocablo> accion = new Action<PuntosPasaVocablo>(ComprobarPuntuacion(int puntuacion));
+
+            //listaPuntuaciones.ForEach(listaPuntuaciones, accion);
+
+            for (int i = 0; i <= listaPuntuaciones.Count; i++) {
+                if (puntuacion >= listaPuntuaciones[i].puntuacion)
+                {
+                    nuevaPosicion = i + 1;
+                    break; //Imagino que esto funciona como en Java
+                    
+
+                }
+            }
+
+            if (nuevaPosicion > 0 && nuevaPosicion < 11)
+            {
+                //PONER el display a promp. 
+                //Si la puntuación está en el top 10:  
+                //el botón de ok del cuadro de dialogo obtiene el nombre intertado e introduce el usuario.
+
+                String usuario = await DisplayPromptAsync(String.Format("Tu puntuación es: {0}", puntuacion), "Tu puntuación está entre las diez primeras. Introduce tu nombre", "Confirmar");
+
+
+                PuntosPasaVocablo auxPuntos = new PuntosPasaVocablo(nuevaPosicion, puntuacion, usuario, dificultadPartida, aciertos, 20);
+
+                //TODO ACTUALIZAR TODAS LAS POSICIONES DE LA BASE DE DATOS
+            }
+            else { 
+            
+                   //Alerta normal
+
+            
+            
+            }//fin if
+
+            
+
+            
+
+            //Si la puntuación no está en el top 10, poner la alerta normal
             await Navigation.PushAsync(new PuntuacionPasaVocablo());
 
 
         }//Fin método FinPartida
+
+        //Método para comprobar la puntuación: (haciendo uso de los delegados)
+        //https://docs.microsoft.com/en-us/dotnet/api/system.array.foreach?view=net-5.0
+        public static void ComprobarPuntuacion(int puntos) {
+        
+          
+
+        }
+
+        //Triggers que llaman a los métodos para el inicio de la partida:
+
 
 
         //----- Metodos para el cambio de los fondos -------/ 
@@ -926,8 +1054,60 @@ namespace PiensaJuegos.Views
         }//Fin metodo FallarFondoFoco
 
 
+        //Pruebas del boton
 
+        public void pruebaBotonUno(Object sender, EventArgs e)
+        {
+            ApagarFondoFoco(contadorCiclo);
+            contadorCiclo = SiguienteContador(contadorCiclo);
+            EncenderFondoFoco(contadorCiclo);
+            preguntaVM.letraPregunta = listaPreguntas[contadorCiclo];
+        }
 
+        //Prueba botón confirmar respuesta:
+
+        public void pruebaEnviarRespeusta() {
+
+            String respuestaCorrecta = listaPreguntas[contadorCiclo].respuesta.ToString();
+
+            String respuestaUsuario = txtRespuesta.Text.ToString();
+
+            //Nota: Se escriben dos llamadas al método SiguienteContador. una en el código de acierto y otra en el de fallo.
+            //en el código en el que no se ha introducirdo respuesta no. Por este motivo, no se pone al final del if..else if... else
+
+            if (respuestaUsuario.Equals(respuestaCorrecta))
+            {
+
+                listaPreguntas[contadorCiclo].sinRespuesta = false;
+                listaPreguntas[contadorCiclo].acertada = true;
+                AcertarFondoFoco(contadorCiclo);
+                this.lblInformativa.Text = "¡Respuesta correcta!";
+                this.lblInformativa.TextColor = Color.Lime;
+                aciertos++;
+                preguntasRestantes--;
+                SiguienteContador(contadorCiclo);
+
+                //TODO las variables que cuantan los fallos y los aciertos han de ser globales para poder usarlas en los diferentes métodos.
+            }
+            else if (respuestaUsuario.Equals(""))
+            {
+                this.lblInformativa.Text = "¡Debes introducir una respuesta!";
+                this.lblInformativa.TextColor = Color.White;
+            }
+            else
+            {
+                listaPreguntas[contadorCiclo].sinRespuesta = false;
+                listaPreguntas[contadorCiclo].fallada = true;
+                FallarFondoFoco(contadorCiclo);
+                this.lblInformativa.Text = "¡Respuesta incorrecta!";
+                this.lblInformativa.TextColor = Color.Crimson;
+                SiguienteContador(contadorCiclo);
+                fallos++;
+                preguntasRestantes--;
+            }
+
+            //TODO aqui poner que si todas las preguntas se han respondido, el booleano se activa y en algun lugar poner el valueEventListener que escuhca que ese valor ha pasado atrue, y dentro, una llamada al método finalizar partida.
+        }
 
     }
 }
