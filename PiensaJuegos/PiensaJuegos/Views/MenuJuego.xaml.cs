@@ -22,6 +22,9 @@ namespace PiensaJuegos.Views
 
             this.btnIniciarPasoVocablo.Clicked += IniciarPasoVocablo;
 
+            this.btnPuntuacionesPasaVocablo.Clicked += VerPuntuaciones;
+
+
         }//Fin Constructor
 
 
@@ -45,6 +48,12 @@ namespace PiensaJuegos.Views
             await Navigation.PushAsync(new JuegoPasoVocablo(dificultad));
 
 
+        }
+
+        public async void VerPuntuaciones(Object sender, EventArgs e)
+        {
+
+            await Navigation.PushAsync(new PuntuacionPasaVocablo());
         }
 
 

@@ -157,4 +157,13 @@
   <ItemGroup>
     <BundleResource Include="Resources\fondoflor.jpeg" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\anochecerestrellado.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\otono.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\libros.jpg" />
+  </ItemGroup>
 </Project>

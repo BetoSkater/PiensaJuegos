@@ -3,6 +3,7 @@ using PiensaJuegos.Repositories;
 using PiensaJuegos.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -164,11 +165,12 @@ namespace PiensaJuegos.Views
 
             //  FuncionamientoJuego();
 
-            this.btnRendirse.Clicked += FinPartida;
+            //this.btnRendirse.Clicked += FinPartida;
 
            // this.btnConfirmar.Clicked += pruebaBotonUno;
             this.btnPasar.Clicked += pruebaBotonUno;
 
+            this.btnConfirmar.Clicked += pruebaEnviarRespeusta;
 
             //TODO eliminar, esto tiene que ir en el metodo que inicie el juego
 
@@ -236,6 +238,7 @@ namespace PiensaJuegos.Views
             if (temporizadorVM.segundosRestantes == 0)
             {
                 _timer.Stop();
+                //FinPartida();
                 //this.lblTemporizador.Text = "Fin";
                 //TODO añadir llamada al metodo que finalice el juego, tiene que ser el mismo que el de conseguir la victoria o completar el panel aun con errores
             }
@@ -481,8 +484,12 @@ namespace PiensaJuegos.Views
                     break;
             }
 
-            int resultado = Convert.ToInt32((Math.Pow((valorDificultad * aciertos),5))-Math.Pow((fallos * 3),1/3)) + tiempo ; //El 1/3 es para hacer que sea la raiz cúbica
+            int resultado = Convert.ToInt32((Math.Pow((valorDificultad * aciertos),3))-Math.Pow((fallos * 3),1/3)) + tiempo ; //El 1/3 es para hacer que sea la raiz cúbica
             //TODO pendiente hacer lo del tiempo
+            if (resultado < 0)
+            {
+                resultado = 0;
+            }
             return resultado; 
 
 
@@ -559,8 +566,6 @@ namespace PiensaJuegos.Views
         public int SiguienteContador(int contadorActual)
         {
 
-           
-
             do
             {
                 contadorFinal++;
@@ -579,17 +584,23 @@ namespace PiensaJuegos.Views
         }
         //Método que finaliza la partida y navega a la ventana de puntuaciones:
 
-        public async void FinPartida(Object Sender, EventArgs e)
+        public async  void FinPartida()
         {
             //En primer lugar se calcula la puntuación del usuario:
-            int puntuacion = ObtenerPuntuacion(20,aciertos,fallos,dificultadPartida);
+            int puntuacion = ObtenerPuntuacion(0,aciertos,fallos,dificultadPartida);
 
-            int nuevaPosicion = -1;
+            int nuevaPosicion =-1;
 
+            //Se abre el repositorio de las puntuaciones:
+
+            
 
             RepositorPuntosPasaVocablo repoPuntos = new RepositorPuntosPasaVocablo();
 
-            List<PuntosPasaVocablo> listaPuntuaciones = repoPuntos.GetPuntuaciones();
+
+            List<PuntosPasaVocablo> listaPuntuaciones = repoPuntos.GetPuntuaciones().ToList();
+
+            nuevaPosicion = listaPuntuaciones.Count == 0 ? 0 : -1; 
 
             //Se comprueba si la puntuación del usuario está ene l top 10.
 
@@ -599,42 +610,58 @@ namespace PiensaJuegos.Views
 
             //listaPuntuaciones.ForEach(listaPuntuaciones, accion);
 
-            for (int i = 0; i <= listaPuntuaciones.Count; i++) {
+            for (int i = 0; i < listaPuntuaciones.Count; i++) {
                 if (puntuacion >= listaPuntuaciones[i].puntuacion)
                 {
-                    nuevaPosicion = i + 1;
+                    nuevaPosicion = i ;
                     break; //Imagino que esto funciona como en Java
-                    
-
+                  
                 }
             }
 
-            if (nuevaPosicion > 0 && nuevaPosicion < 11)
+            if (nuevaPosicion >= 0 && nuevaPosicion < 10)
             {
                 //PONER el display a promp. 
                 //Si la puntuación está en el top 10:  
                 //el botón de ok del cuadro de dialogo obtiene el nombre intertado e introduce el usuario.
-
                 String usuario = await DisplayPromptAsync(String.Format("Tu puntuación es: {0}", puntuacion), "Tu puntuación está entre las diez primeras. Introduce tu nombre", "Confirmar");
+                PuntosPasaVocablo auxPuntos = new PuntosPasaVocablo((nuevaPosicion +1), puntuacion, usuario, dificultadPartida, aciertos, 20);
 
+               
+                repoPuntos.InsertarPuntuacion(auxPuntos);
 
-                PuntosPasaVocablo auxPuntos = new PuntosPasaVocablo(nuevaPosicion, puntuacion, usuario, dificultadPartida, aciertos, 20);
+                //OJO, esto no lo guarda en la base de datos:
 
-                //TODO ACTUALIZAR TODAS LAS POSICIONES DE LA BASE DE DATOS
+                //Se eliminan los registros de la tabla: 
+                //TODO hasta qui llega
+                //for (int i = 0; i < listaPuntosAuxiliar.Count; i++)
+                //{
+                //    repoPuntos.EliminarPuntuaciones(listaPuntuaciones[i]);  
+                //    //Comprobacion de que se borran las puntuaciones pero no las tablas de las preguntas:
+
+          
+                //}
+                //Se inserta la lista de objetos actualizada:
+
+             
+                /*
+                for (int i = 0; i < listaPuntosAuxiliar.Count; i++)
+                {
+                    repoPuntos.InsertarPuntuacion(listaPuntosAuxiliar[i]);
+                }
+                //Comprobacion de que funciona:
+                List<PuntosPasaVocablo> listaComprobarActualizacionBD = repoPuntos.GetPuntuaciones();
+                */
             }
-            else { 
-            
-                   //Alerta normal
+            else {
 
-            
-            
+                await DisplayAlert(String.Format("Tu puntuación es: {0}", puntuacion), "Tu puntuación no está entre las diez primeras.", "Ver clasificatoria");
+              
             }//fin if
 
             
 
-            
-
-            //Si la puntuación no está en el top 10, poner la alerta normal
+                  
             await Navigation.PushAsync(new PuntuacionPasaVocablo());
 
 
@@ -1066,18 +1093,19 @@ namespace PiensaJuegos.Views
 
         //Prueba botón confirmar respuesta:
 
-        public void pruebaEnviarRespeusta() {
+        public void pruebaEnviarRespeusta(Object sender, EventArgs e) {
 
             String respuestaCorrecta = listaPreguntas[contadorCiclo].respuesta.ToString();
 
-            String respuestaUsuario = txtRespuesta.Text.ToString();
+            String respuestaUsuario = txtRespuesta.Text != null ? txtRespuesta.Text.ToString() : String.Empty;
 
             //Nota: Se escriben dos llamadas al método SiguienteContador. una en el código de acierto y otra en el de fallo.
             //en el código en el que no se ha introducirdo respuesta no. Por este motivo, no se pone al final del if..else if... else
 
-            if (respuestaUsuario.Equals(respuestaCorrecta))
-            {
+           
 
+            if (String.Compare(respuestaUsuario, respuestaCorrecta, CultureInfo.CurrentCulture, CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase) == 0)
+            {             
                 listaPreguntas[contadorCiclo].sinRespuesta = false;
                 listaPreguntas[contadorCiclo].acertada = true;
                 AcertarFondoFoco(contadorCiclo);
@@ -1085,13 +1113,15 @@ namespace PiensaJuegos.Views
                 this.lblInformativa.TextColor = Color.Lime;
                 aciertos++;
                 preguntasRestantes--;
-                SiguienteContador(contadorCiclo);
+                if (preguntasRestantes > 0) { 
+                 contadorCiclo = SiguienteContador(contadorCiclo);
+                }
 
                 //TODO las variables que cuantan los fallos y los aciertos han de ser globales para poder usarlas en los diferentes métodos.
             }
             else if (respuestaUsuario.Equals(""))
             {
-                this.lblInformativa.Text = "¡Debes introducir una respuesta!";
+                this.lblInformativa.Text = "¡Debes introducir una respuesta  o pulsar \"PASOVOCABLO\"!";
                 this.lblInformativa.TextColor = Color.White;
             }
             else
@@ -1101,13 +1131,38 @@ namespace PiensaJuegos.Views
                 FallarFondoFoco(contadorCiclo);
                 this.lblInformativa.Text = "¡Respuesta incorrecta!";
                 this.lblInformativa.TextColor = Color.Crimson;
-                SiguienteContador(contadorCiclo);
                 fallos++;
                 preguntasRestantes--;
+
+                if (preguntasRestantes > 0)
+                {
+                    contadorCiclo = SiguienteContador(contadorCiclo);
+                }
+
             }
 
             //TODO aqui poner que si todas las preguntas se han respondido, el booleano se activa y en algun lugar poner el valueEventListener que escuhca que ese valor ha pasado atrue, y dentro, una llamada al método finalizar partida.
-        }
+
+            if (preguntasRestantes == 0)
+            {
+                veintisieteRespuestas = true;
+
+            }
+            else { 
+            //Cambio de pregunta si el contador ha cambiado (acierto o fallo)
+
+            preguntaVM.letraPregunta = listaPreguntas[contadorCiclo];
+            EncenderFondoFoco(contadorCiclo);
+            this.txtRespuesta.Text = "";
+
+            }
+
+            if (veintisieteRespuestas || temporizadorVM.segundosRestantes == 0)
+            {
+                FinPartida();
+            }
+          
+        }//Fin método prueba enviar respuesta
 
     }
 }

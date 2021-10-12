@@ -54,7 +54,9 @@
 
                     <Button x:Name="btnIniciarPasoVocablo"
                                 Text="¡Comenzar!"
-                                TextColor="White"/>
+                                TextColor="LightGoldenrodYellow"
+                            FontAttributes="Bold"
+                            BackgroundColor="Transparent"/>
                 </StackLayout>
 
 

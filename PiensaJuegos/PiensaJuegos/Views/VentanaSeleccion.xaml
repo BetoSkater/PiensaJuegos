@@ -3,36 +3,68 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PiensaJuegos.Views.VentanaSeleccion">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="PiensaJuegos"
+
+        <AbsoluteLayout>
+
+            <Image Source="fondobosque.jpg"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    Aspect="Fill"
+                   
+                   />
+
+
+
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                Padding="10">
+                <Label Text="PiensaJuegos"
                    FontSize="Title"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       TextDecorations="Underline"
                    HorizontalOptions="Center"/>
 
-            <Label Text="Selecciona un juego"
+                <Label Text="Selecciona un juego"
+                       TextColor="White"
+                       
                    HorizontalOptions="Center"/>
 
-            <Button x:Name="btnIrPasaVocablo"
+                <Button x:Name="btnIrPasaVocablo"
                     Text="PasaVocablo"
-                    BackgroundColor="green"
-                    TextColor="Black"
+ 
+                        
+                         BackgroundColor="Transparent"
+                        TextColor="LightGoldenrodYellow"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
 
                 />
 
 
-            <Button x:Name="btnIrAdivinanzaQr"
+                <Button x:Name="btnIrAdivinanzaQr"
                     Text="AdivinanzasQr"
-                    BackgroundColor="green"
-                    TextColor="Black"
+                    FontAttributes="Bold"
+                         BackgroundColor="Transparent"
+                        TextColor="LightGoldenrodYellow"
+                        HorizontalOptions="Center"
 
                 />
 
 
-            <Button x:Name="btnAcierto"
-                    Text="Acierto"/>
+                <Button x:Name="btnAcierto"
+                    Text="Acierto"
+                        IsVisible="false"/>
 
-            <Button x:Name="btnFallo"
-                    Text="Fallo"/>
-        </StackLayout>
+                <Button x:Name="btnFallo"
+                    Text="Fallo"
+                        IsVisible="false"/>
+            </StackLayout>
+
+
+        </AbsoluteLayout>
+       
 
     </ContentPage.Content>
 </ContentPage>

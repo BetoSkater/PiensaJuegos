@@ -319,7 +319,7 @@
             AbsoluteLayout.LayoutFlags="All"
             HorizontalOptions="Fill"
             x:Name="contenedorPreg"
-          
+          Padding="7,4,7,4"
             >
 
 
@@ -330,8 +330,12 @@
             <Label 
                     Text="{Binding letraPregunta.pregunta , Mode=TwoWay}"
                   TextColor="White"
+                FontSize="Medium"
                    HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center"
+                HeightRequest="200"
                    x:Name="lblPregunta"/>
+            <BoxView HeightRequest="1" BackgroundColor="white"/>
             <Label Text="Introduce la palabra correcta:"
                    HorizontalTextAlignment="Center"
                    TextColor="White"/>
@@ -343,6 +347,8 @@
 
                 <Entry 
                     x:Name="txtRespuesta"
+                    TextColor="LightGoldenrodYellow"
+                    IsTextPredictionEnabled="False"
                     Placeholder="Tu respuesta"
                     PlaceholderColor="White"
                     WidthRequest="250"
@@ -378,7 +384,8 @@
                     x:Name="btnRendirse"
                     TextColor="Red"
                     FontAttributes="Bold, Italic"
-                    BackgroundColor="Transparent"/>
+                    BackgroundColor="Transparent"
+                    IsVisible="false"/>
         </StackLayout>
 
 

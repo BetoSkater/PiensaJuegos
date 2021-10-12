@@ -6,19 +6,32 @@
 
         <AbsoluteLayout>
 
-            <StackLayout
-                AbsoluteLayout.LayoutBounds="0,0,1,1"
-                    AbsoluteLayout.LayoutFlags="All">
+            <Image Source="anochecerestrellado.jpg"
+                   AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                   Aspect="AspectFill"
+                   
+                   />
+
+            <StackLayout AbsoluteLayout.LayoutBounds="0.5,0.5,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center">
 
                 <Label
                     
-                   Text="PiensaJuegos"
-                   FontSize="Large"
-                   FontAttributes="Bold"
-                    HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   />
+                  
+                    FontSize="Title"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                  
+                   >
+                    PiensaJuegos
+                    
+                </Label>
             </StackLayout>
+              
+       
 
 
 

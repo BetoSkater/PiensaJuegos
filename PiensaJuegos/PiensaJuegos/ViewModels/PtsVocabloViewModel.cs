@@ -16,7 +16,7 @@ namespace PiensaJuegos.ViewModels
         public PtsVocabloViewModel()
         {
             this.repoPuntos = new RepositorPuntosPasaVocablo();
-            List<PuntosPasaVocablo> lista = this.repoPuntos.GetPuntuaciones();
+            List<PuntosPasaVocablo> lista = this.repoPuntos.GetPuntuacionesLimit10AndOrderbyPuntuacion();
             this.puntuaciones = new ObservableCollection<PuntosPasaVocablo>(lista);
 
         }//Fin

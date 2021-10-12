@@ -630,7 +630,7 @@ namespace PiensaJuegos.Views
             //Pregunta 2:
             LetraL letraL2 = new LetraL();
             letraL2.idLetraL = repoL.GetMaximoIdLetraL();
-            letraL2.preguntaL = "Comienza por L. Piedra llana enq ue ordinariamente se pone una inscripción.";
+            letraL2.preguntaL = "Comienza por L. Piedra llana en que ordinariamente se pone una inscripción.";
             letraL2.respuestaL = "Lápida";
             repoL.InsertarPreguntaL(letraL2);
             //Pregunta 3:
@@ -741,7 +741,7 @@ namespace PiensaJuegos.Views
             //Pregunta 3:
             LetraNie letraNie3 = new LetraNie();
             letraNie3.idLetraNie = repoNie.GetMaximoIdLetraNie();
-            letraNie3.preguntaNie = "Contiene la ÑFruto nutritivo y sabroso, del  tamaño de la nuez, y cubierto de una cáscara gruesa y correosa de color marrón oscuro.";
+            letraNie3.preguntaNie = "Contiene la Ñ. Fruto nutritivo y sabroso, del  tamaño de la nuez, y cubierto de una cáscara gruesa y correosa de color marrón oscuro.";
             letraNie3.respuestaNie = "Castaña";
             repoNie.InsertarPreguntaNie(letraNie3);
             //Pregunta 4:
@@ -799,7 +799,7 @@ namespace PiensaJuegos.Views
             //Pregunta 1:
             LetraP letraP1 = new LetraP();
             letraP1.idLetraP = repoP.GetMaximoIdLetraP();
-            letraP1.preguntaP = "Con la P. Metal de transición englobado en los metales nobles muy usado en joyería cuya símbolo químico empieza por P.";
+            letraP1.preguntaP = "Con la P. Metal de transición englobado en los metales nobles muy usado en joyería cuya símbolo químico es Pt.";
             letraP1.respuestaP = "Platino";
             repoP.InsertarPreguntaP(letraP1);
             //Pregunta 2:
@@ -818,7 +818,7 @@ namespace PiensaJuegos.Views
             LetraP letraP4 = new LetraP();
             letraP4.idLetraP = repoP.GetMaximoIdLetraP();
             letraP4.preguntaP = "Comienza con P. Arma corta, ofensiva, de acero que solo hiere de punta.";
-            letraP4.respuestaP = "Puñal.";
+            letraP4.respuestaP = "Puñal";
             repoP.InsertarPreguntaP(letraP4);
             //Pregunta 5:
             LetraP letraP5 = new LetraP();
