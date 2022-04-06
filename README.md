@@ -22,7 +22,7 @@ In order to fully separate the logic from the view, the app is structured follow
 
 ## Functionality 
 - **Difficulty selection**:</br>
-There's a dificulty selector that allows the player to choose  the game difficulty. This selector has been made binding a slider with a label and has three states "<em>Begginer</em>", "Normal" or "Expert". Depending on the slider's value, the game timer will be set to infinite, 999 seconds (~17 min) or 5 min respectivily.
+There's a dificulty selector that allows the player to choose  the game difficulty. This selector has been made binding a slider with a label and has three states "<i>Begginer</i>", "Normal" or "Expert". Depending on the slider's value, the game timer will be set to infinite, 999 seconds (~17 min) or 5 min respectivily.
 
 <p align="center">
   <img src="./seleccion.gif" alt="seleccion" height="720">
