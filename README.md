@@ -7,22 +7,22 @@
 - MVVM Model
 - iOS
 - Android
-- 
+ 
 ## Introduction
-  **PiensaJuegos** is a simple relaxing memory games App. The main game is **PasaVocablo** which is a "guess the word" based game. A letter and a hint (the meaning of the word) are given to the player. The player can asnwer the question or pass. In both cases, the player will be given a new word to guess following the alphabet order. The game ends whenever all the words are anwered or when the countdown reaches zero.
+     **PiensaJuegos** is a simple relaxing memory games App. The main game is **PasaVocablo** which is a "guess the word" based game. A letter and a hint (the meaning of the word) are given to the player. The player can asnwer the question or pass. In both cases, the player will be given a new word to guess following the alphabet order. The game ends whenever all the words are anwered or when the countdown reaches zero.
 
 ## Why did I make this App?
- I was a student in a developer course for unemployed people. We had to make a project in less than seven days. I wanted to create a simple app with three main objetives in mind. The first one, to use the MVVM model. The second one,to use good practices(clean code, good organization of the code and tools and so on) and the last one, to focus in the logic aspect. While I was thinking about wich could fit all of this, i recalled that when I was a kid, I used to watch a TV contest called "The Alphabet Game" and suddenly I come by with the idea of how all fitted perfectly.
+      I was a student in a developer course for unemployed people. We had to make a project in less than seven days. I wanted to create a simple app with three main objetives in mind. The first one, to use the MVVM model. The second one,to use good practices(clean code, good organization of the code and tools and so on) and the last one, to focus in the logic aspect. While I was thinking about wich could fit all of this, i recalled that when I was a kid, I used to watch a TV contest called "The Alphabet Game" and suddenly I come by with the idea of how all fitted perfectly.
  
  </br>
 
 ## Technologies
-**PiensaJuegos** has been made using Xamarin.Forms, which means that can be used both in Android and iOS. So the main languaje is .Net (#C). About the database, **PiensaJuegos** only have a local object oriented database. Dou to the app being able to be ran in Andorid and iOS, the choosen database has been Realm. 
+    **PiensaJuegos** has been made using Xamarin.Forms, which means that can be used both in Android and iOS. So the main languaje is .Net (#C). About the database, **PiensaJuegos** only have a local object oriented database. Dou to the app being able to be ran in Andorid and iOS, the choosen database has been Realm. 
 In order to fully separate the logic from the view, the app is structured following the MVVM data model. 
 
 ## Functionality 
-- Difficulty selection:
-There's a dificulty selector that allows the player to choose  the game difficulty. This selector has been made binding a slider with a label and has three states "Begginer", "Normal" or "Expert". Depending on the slider's value, the game timer will be set to infinite, 999 seconds (~17 min) or 5 min respectivily.
+- **Difficulty selection**:</br>
+There's a dificulty selector that allows the player to choose  the game difficulty. This selector has been made binding a slider with a label and has three states "<em>Begginer</em>", "Normal" or "Expert". Depending on the slider's value, the game timer will be set to infinite, 999 seconds (~17 min) or 5 min respectivily.
 
 <p align="center">
   <img src="./seleccion.gif" alt="seleccion" height="720">
