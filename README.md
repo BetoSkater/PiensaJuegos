@@ -27,6 +27,14 @@ There's a dificulty selector that allows the player to choose  the game difficul
 <img src="./seleccion.gif" alt="seleccion" height="720">
 
 - Game Loop:
-When the game stars, 27 random number are generated, those are needed to create the array that contains a question object for each letter. A single object has a letter, a question, an answer, and a state
+When the game stars, 27 random number are generated, those are needed to create the array that contains a question object for each letter. A single object has a letter, a question, an answer, and a three states that helps to know if a question has not been answered, another one tracks if the given answer is correct and the last one tracks if the given answer is false. In order to help the user track the state of the game, a "letters grid" has beem added. The current question displays an orange backgroud in the related letter cell in the grid. When the user press the button "PASOVOCABLO" (pass word), the question displayed is "skipped", so it remains unaswered (blue background). Once the user pass or answer the last question and as long as theres time remaining it loops, showing again the unaswered questions. A correct answer sets the letter's cell background to green and a wrong answer, sets it to red.
 
 <img src="./bucle.gif" alt="bucle" height="720">
+
+- Correct answer:
+Example of input written as the object correct answer field
+<img src="./correcto.gif" alt="correcto" height="720">
+
+This is not the only way to answer correctly a question. A memory game is just a game, is not an exam so in  order to flex the user answer
+
+
