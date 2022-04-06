@@ -41,7 +41,7 @@ This is not the only way to answer correctly a question. A memory game is just a
 
 
 - Wrong answer:
-<img src="./globalization.gif" alt="globalization" height="720">
+<img src="./error.gif" alt="error" height="720">
 - End Game:
 The game ends whenever the user answer all the questions or when the timer reaches zero. At this moment, the score is calculated. If it is among the top 10, an alert dialog with a textbox is shown, in which the user can input a text, like a name or nickname. Afterwards the top 10 score view is shown. If the score is not among the top 10, an average alerdialog is show and then, the top 10 scores.
 
