@@ -21,8 +21,12 @@
 In order to fully separate the logic from the view, the app is structured following the MVVM data model. 
 
 ## Functionality 
+- Difficulty selection:
 There's a dificulty selector that allows the player to choose  the game difficulty. This selector has been made binding a slider with a label and has three states "Begginer", "Normal" or "Expert". Depending on the slider's value, the game timer will be set to infinite, 999 seconds (~17 min) or 5 min respectivily.
 
 <img src="./seleccion.gif" alt="seleccion" height="720">
-----
+
+- Game Loop:
+When the game stars, 27 random number are generated, those are needed to create the array that contains a question object for each letter. A single object has a letter, a question, an answer, and a state
+
 <img src="./bucle.gif" alt="bucle" height="720">
