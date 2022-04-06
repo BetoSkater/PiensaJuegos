@@ -24,7 +24,11 @@ In order to fully separate the logic from the view, the app is structured follow
 - Difficulty selection:
 There's a dificulty selector that allows the player to choose  the game difficulty. This selector has been made binding a slider with a label and has three states "Begginer", "Normal" or "Expert". Depending on the slider's value, the game timer will be set to infinite, 999 seconds (~17 min) or 5 min respectivily.
 
-<img src="./seleccion.gif" alt="seleccion" height="720">
+<p align="center">
+  <img src="./seleccion.gif" alt="seleccion" height="720">
+</p>
+
+
 
 - Game Loop:
 When the game stars, 27 random number are generated, those are needed to create the array that contains a question object for each letter. A single object has a letter, a question, an answer, and a three states that helps to know if a question has not been answered, another one tracks if the given answer is correct and the last one tracks if the given answer is false. In order to help the user track the state of the game, a "letters grid" has beem added. The current question displays an orange backgroud in the related letter cell in the grid. When the user press the button "PASOVOCABLO" (pass word), the question displayed is "skipped", so it remains unaswered (blue background). Once the user pass or answer the last question and as long as theres time remaining it loops, showing again the unaswered questions. A correct answer sets the letter's cell background to green and a wrong answer, sets it to red.
