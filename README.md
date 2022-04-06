@@ -35,6 +35,9 @@ When the game stars, 27 random number are generated, those are needed to create 
 Example of input written as the object correct answer field
 <img src="./correcto.gif" alt="correcto" height="720">
 
-This is not the only way to answer correctly a question. A memory game is just a game, is not an exam so in  order to flex the user answer
+This is not the only way to answer correctly a question. A memory game is just a game, is not an exam so in  order to make it fair and relaxing, the user can input the answers in diferent ways. In order to acchieve that, "System.Globalization" has been used in the comparison. This mean that a user can input the answer in lower case, upper case, mixed case, using accents and so on. Examples of words that are accepted as correct for the same word: "Ceja", "CEJA", "ceja", "CeJa", "Cèjá" ...
+
+<img src="./globalization.gif" alt="globalization" height="720">
+
 
 
