@@ -33,21 +33,41 @@ There's a dificulty selector that allows the player to choose  the game difficul
 - Game Loop:
 When the game stars, 27 random number are generated, those are needed to create the array that contains a question object for each letter. A single object has a letter, a question, an answer, and a three states that helps to know if a question has not been answered, another one tracks if the given answer is correct and the last one tracks if the given answer is false. In order to help the user track the state of the game, a "letters grid" has beem added. The current question displays an orange backgroud in the related letter cell in the grid. When the user press the button "PASOVOCABLO" (pass word), the question displayed is "skipped", so it remains unaswered (blue background). Once the user pass or answer the last question and as long as theres time remaining it loops, showing again the unaswered questions. A correct answer sets the letter's cell background to green and a wrong answer, sets it to red.
 
-<img src="./bucle.gif" alt="bucle" height="720">
+<p align="center">
+  <img src="./bucle.gif" alt="bucle" height="720">
+</p>
+
+
 
 - Correct answer:
 Example of input written as the object correct answer field
-<img src="./correcto.gif" alt="correcto" height="720">
+
+<p align="center">
+ <img src="./correcto.gif" alt="correcto" height="720">
+</p>
+
+
 
 This is not the only way to answer correctly a question. A memory game is just a game, is not an exam so in  order to make it fair and relaxing, the user can input the answers in diferent ways. In order to acchieve that, "System.Globalization" has been used in the comparison. This mean that a user can input the answer in lower case, upper case, mixed case, using accents and so on. Examples of words that are accepted as correct for the same word: "Ceja", "CEJA", "ceja", "CeJa", "Cèjá" ...
 
-<img src="./globalization.gif" alt="globalization" height="720">
+<p align="center">
+ <img src="./globalization.gif" alt="globalization" height="720">
+</p>
+
+
+
 
 
 - Wrong answer:
-<img src="./error.gif" alt="error" height="720">
+<p align="center">
+ <img src="./error.gif" alt="error" height="720">
+</p>
+
+
 - End Game:
 The game ends whenever the user answer all the questions or when the timer reaches zero. At this moment, the score is calculated. If it is among the top 10, an alert dialog with a textbox is shown, in which the user can input a text, like a name or nickname. Afterwards the top 10 score view is shown. If the score is not among the top 10, an average alerdialog is show and then, the top 10 scores.
+<p align="center">
+ <img src="./puntuaciones.gif" alt="puntuaciones" height="720">
+</p>
 
-<img src="./puntuaciones.gif" alt="puntuaciones" height="720">
 
